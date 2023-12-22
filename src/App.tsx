@@ -1,8 +1,18 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Login from './components/Login'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { Login, NotFound, Root } from './routes'
+
+const router = createBrowserRouter([
+  { path: '/login', Component: Login },
+  {
+    path: '/*',
+    Component: Root,
+    errorElement: <NotFound />,
+  },
+])
 
 function App() {
-  return <Login />
+  return <RouterProvider router={router} />
 }
 
 export default App
