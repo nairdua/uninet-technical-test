@@ -11,11 +11,17 @@ export default function NavbarComponent() {
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link>
-              <Link to="/">Home</Link>
+            <Nav.Link as={Link} to="/">
+              Home
             </Nav.Link>
-            <Nav.Link>
-              <Link to="/logout">Logout</Link>
+            <Nav.Link as={Link} to="/posts">
+              Posts
+            </Nav.Link>
+            <Nav.Link as={Link} to="/billing">
+              Billing Details
+            </Nav.Link>
+            <Nav.Link as={Link} to="/logout">
+              Logout
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
