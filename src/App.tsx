@@ -1,8 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import ThemeProvider from 'react-bootstrap/ThemeProvider'
+import Login from './components/Login'
 
 function App() {
-  return <ThemeProvider>It works!</ThemeProvider>
+  return <Login />
 }
 
 export default App
