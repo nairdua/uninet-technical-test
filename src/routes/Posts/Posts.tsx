@@ -1,12 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Card, CardGroup, Container } from 'react-bootstrap'
-import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore'
+import { Button, Card, Col, Container, Row } from 'react-bootstrap'
+import { collection, getDocs } from 'firebase/firestore'
 
 import { db } from 'firebase'
-import { useModalStore, useToastStore } from 'store'
-
-import { DeleteModal } from './components'
 
 export interface PostTimestamp {
   nanoseconds: number
@@ -22,32 +19,6 @@ export interface Post {
 
 export default function Posts() {
   const [posts, setPosts] = useState<Post[]>([])
-  const modal = useModalStore()
-  const toast = useToastStore()
-
-  function showDeleteModal(id: string) {
-    modal.showModal(
-      <DeleteModal onCancel={cancelDelete} onConfirm={() => deletePost(id)} />,
-      true,
-    )
-  }
-
-  function cancelDelete() {
-    modal.closeModal()
-  }
-
-  async function deletePost(id: string) {
-    try {
-      const docRef = doc(db, 'posts', id)
-      await deleteDoc(docRef)
-      toast.showToast('success', 'Successfully deleted the post!')
-      modal.closeModal()
-      fetchPosts()
-    } catch (e) {
-      toast.showToast('danger', 'Something went wrong while deleting the post.')
-      console.error(e)
-    }
-  }
 
   async function fetchPosts() {
     await getDocs(collection(db, 'posts')).then(querySnapshot => {
@@ -69,28 +40,22 @@ export default function Posts() {
   }, [])
 
   const PostsList = (
-    <CardGroup>
+    <Row xs={1} md={2} className="g-4">
       {posts.map(post => (
-        <Card key={post.id} style={{ width: '18rem', cursor: 'pointer' }}>
-          <Card.Body>
-            <Card.Title>{post.title}</Card.Title>
-            <Card.Text style={{ textOverflow: 'ellipsis' }}>
-              {post.text.substring(0, 120)}
-            </Card.Text>
-            <Card.Link as={Button} variant="primary">
-              View
-            </Card.Link>
-            <Card.Link
-              as={Button}
-              variant="danger"
-              onClick={() => showDeleteModal(post.id)}
-            >
-              Delete
-            </Card.Link>
-          </Card.Body>
-        </Card>
+        <Col key={post.id}>
+          <Link to={post.id} className="text-decoration-none">
+            <Card className="h-100 flex-fill" style={{ cursor: 'pointer' }}>
+              <Card.Body>
+                <Card.Title>{post.title}</Card.Title>
+                <Card.Text style={{ textOverflow: 'ellipsis' }}>
+                  {post.text.substring(0, 120)}
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Link>
+        </Col>
       ))}
-    </CardGroup>
+    </Row>
   )
 
   const NoPosts = (
