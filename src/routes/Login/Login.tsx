@@ -1,19 +1,35 @@
-import React from 'react'
+import axios from 'axios'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Button from 'react-bootstrap/Button'
-import Card from 'react-bootstrap/Card'
+
+// import { useNavigate } from 'react-router-dom'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
-import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 import Stack from 'react-bootstrap/Stack'
+
+import { LOGIN } from 'api/auth'
+
+import { LoginForm } from './components'
+import { LoginFormData } from './components/LoginForm'
 
 export default function Login() {
   const navigate = useNavigate()
 
-  function submitForm(e: React.FormEvent) {
-    e.preventDefault()
-    navigate('/')
+  const [error, setError] = useState('')
+
+  async function loginUser(data: LoginFormData) {
+    axios
+      .post(LOGIN, data)
+      .then(res => console.log(res.data))
+      .catch(err => {
+        console.log(err.response.data)
+        setError(err.response.data.error)
+      })
+  }
+
+  function registerUser() {
+    navigate('/register')
   }
 
   return (
@@ -25,38 +41,11 @@ export default function Login() {
             <p>Please enter your credentials.</p>
           </Col>
           <Col sm>
-            <Card>
-              <Form noValidate onSubmit={e => submitForm(e)}>
-                <Card.Header>Login</Card.Header>
-                <Card.Body>
-                  <Form.Group className="mb-3" controlId="email">
-                    <Form.Label>Email Address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter your email" />
-                  </Form.Group>
-                  <Form.Group controlId="password">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                      type="password"
-                      placeholder="Enter your password"
-                    />
-                  </Form.Group>
-                </Card.Body>
-                <Card.Footer>
-                  <Stack
-                    direction="horizontal"
-                    gap={4}
-                    className="flex-row-reverse"
-                  >
-                    <Button variant="primary" type="submit">
-                      Login
-                    </Button>
-                    <Button variant="link" type="button" className="ms-auto">
-                      Register
-                    </Button>
-                  </Stack>
-                </Card.Footer>
-              </Form>
-            </Card>
+            <LoginForm
+              onLogin={loginUser}
+              onRegister={registerUser}
+              error={error}
+            />
           </Col>
         </Row>
       </Container>
