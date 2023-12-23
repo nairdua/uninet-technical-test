@@ -10,6 +10,8 @@ import Stack from 'react-bootstrap/Stack'
 
 import { LOGIN } from 'api/auth'
 
+import { useAuthStore } from 'store/useAuthStore'
+
 import { LoginForm } from './components'
 import { LoginFormData } from './components/LoginForm'
 
@@ -17,11 +19,17 @@ export default function Login() {
   const navigate = useNavigate()
 
   const [error, setError] = useState('')
+  const store = useAuthStore()
 
   async function loginUser(data: LoginFormData) {
     axios
       .post(LOGIN, data)
-      .then(res => console.log(res.data))
+      .then(res => {
+        // TODO AUTH
+        store.login(res.data.token)
+        console.log(res.data)
+        navigate('/')
+      })
       .catch(err => {
         console.log(err.response.data)
         setError(err.response.data.error)
