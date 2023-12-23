@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { Login, NotFound, Home, Billing, Register, Logout } from './routes'
-import { ProtectedRoute } from 'components'
+import { ProtectedRoute, ToastManager } from 'components'
 
 const router = createBrowserRouter([
   { path: '/login', Component: Login },
@@ -25,7 +25,12 @@ const router = createBrowserRouter([
 ])
 
 function App() {
-  return <RouterProvider router={router} />
+  return (
+    <>
+      <RouterProvider router={router} />
+      <ToastManager />
+    </>
+  )
 }
 
 export default App

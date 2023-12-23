@@ -14,24 +14,25 @@ import { useAuthStore } from 'store/useAuthStore'
 
 import { LoginForm } from './components'
 import { LoginFormData } from './components/LoginForm'
+import { useToaastStore } from 'store/useToastStore'
 
 export default function Login() {
   const navigate = useNavigate()
 
   const [error, setError] = useState('')
   const store = useAuthStore()
+  const toast = useToaastStore()
 
   async function loginUser(data: LoginFormData) {
     axios
       .post(LOGIN, data)
       .then(res => {
-        // TODO AUTH
         store.login(res.data.token)
-        console.log(res.data)
+        toast.showToast('success', 'Login successful!')
         navigate('/')
       })
       .catch(err => {
-        console.log(err.response.data)
+        toast.showToast('danger', 'An error occurred while logging in.')
         setError(err.response.data.error)
       })
   }
