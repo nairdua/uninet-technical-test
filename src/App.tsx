@@ -12,7 +12,7 @@ import {
 } from './routes'
 import { ProtectedRoute, ToastManager } from 'components'
 import ModalManager from 'components/ModalManager/ModalManager'
-import { PostDetail } from 'routes/Posts'
+import { EditPost, PostDetail } from 'routes/Posts'
 
 const router = createBrowserRouter([
   { path: '/login', Component: Login },
@@ -35,7 +35,13 @@ const router = createBrowserRouter([
         path: 'posts/*',
         children: [
           { index: true, Component: Posts },
-          { path: ':postId', Component: PostDetail },
+          {
+            path: ':postId',
+            children: [
+              { path: '', Component: PostDetail },
+              { path: 'edit', Component: EditPost },
+            ],
+          },
           {
             path: 'create',
             Component: CreatePost,
