@@ -1,6 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import { Login, NotFound, Home, Billing, Register, Logout } from './routes'
+import {
+  Login,
+  NotFound,
+  Home,
+  Billing,
+  Register,
+  Logout,
+  Posts,
+} from './routes'
 import { ProtectedRoute, ToastManager } from 'components'
 
 const router = createBrowserRouter([
@@ -19,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: 'billing',
         Component: Billing,
+      },
+      {
+        path: 'posts',
+        Component: Posts,
       },
     ],
   },

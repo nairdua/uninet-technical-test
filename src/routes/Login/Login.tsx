@@ -27,7 +27,7 @@ export default function Login() {
     axios
       .post(LOGIN, data)
       .then(res => {
-        store.login(res.data.token)
+        store.login(res.data.token, data.email)
         toast.showToast('success', 'Login successful!')
         navigate('/')
       })

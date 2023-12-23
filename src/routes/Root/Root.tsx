@@ -1,6 +1,7 @@
 import { Stack } from 'react-bootstrap'
-import { NavbarComponent } from '../../components'
 import { Outlet } from 'react-router-dom'
+
+import { NavbarComponent } from 'components'
 
 export default function AppShell() {
   return (

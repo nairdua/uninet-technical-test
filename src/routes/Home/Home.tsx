@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export default function Home() {
   return (
     <Container>
-      <h1 className="my-3">Welcome, User!</h1>
+      <h1 className="my-3">Welcome!</h1>
       <Container fluid>
         <Row className="g-2">
           <Col md={6}>
