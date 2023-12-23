@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Form, FormCheck, FormControl, Stack } from 'react-bootstrap'
+import { Button, Form, FormControl, Stack } from 'react-bootstrap'
 
 export interface PostFormData {
   title: string

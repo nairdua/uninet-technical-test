@@ -22,29 +22,25 @@ export interface Post {
 
 export default function Posts() {
   const [posts, setPosts] = useState<Post[]>([])
-  const [selectedPost, setSelectedPost] = useState('')
   const modal = useModalStore()
   const toast = useToastStore()
 
   function showDeleteModal(id: string) {
-    setSelectedPost(id)
     modal.showModal(
-      <DeleteModal onCancel={cancelDelete} onConfirm={deletePost} />,
+      <DeleteModal onCancel={cancelDelete} onConfirm={() => deletePost(id)} />,
       true,
     )
   }
 
   function cancelDelete() {
-    setSelectedPost('')
     modal.closeModal()
   }
 
-  async function deletePost() {
+  async function deletePost(id: string) {
     try {
-      const docRef = doc(db, 'posts', selectedPost)
+      const docRef = doc(db, 'posts', id)
       await deleteDoc(docRef)
       toast.showToast('success', 'Successfully deleted the post!')
-      setSelectedPost('')
       modal.closeModal()
       fetchPosts()
     } catch (e) {
