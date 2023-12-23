@@ -1,8 +1,8 @@
 import { Toast, ToastContainer } from 'react-bootstrap'
-import { useToaastStore } from 'store/useToastStore'
+import { useToastStore } from 'store/useToastStore'
 
 export default function ToastManager() {
-  const store = useToaastStore()
+  const store = useToastStore()
 
   const ToastComponent = (
     <ToastContainer position="top-end" className="p-3">

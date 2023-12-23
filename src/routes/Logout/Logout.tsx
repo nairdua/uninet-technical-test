@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuthStore } from 'store/useAuthStore'
-import { useToaastStore } from 'store/useToastStore'
+import { useToastStore } from 'store/useToastStore'
 
 export default function Logout() {
   const store = useAuthStore()
-  const toast = useToaastStore()
+  const toast = useToastStore()
   const navigate = useNavigate()
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import create from 'zustand'
+import { create } from 'zustand'
 
 type ToastVariants =
   | 'primary'
@@ -26,7 +26,7 @@ interface ToastStore {
   showToast: toastFunction
 }
 
-export const useToaastStore = create<ToastStore>(set => ({
+export const useToastStore = create<ToastStore>(set => ({
   show: false,
   closeToast: () => set(() => ({ show: false })),
   message: '',

@@ -1,3 +1,4 @@
 import Posts from './Posts'
+import CreatePost from './CreatePost/CreatePost'
 
-export default Posts
+export { Posts, CreatePost }

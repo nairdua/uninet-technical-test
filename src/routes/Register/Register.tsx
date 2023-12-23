@@ -4,7 +4,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 import { REGISTER } from 'api/auth'
-import { useToaastStore } from 'store/useToastStore'
+import { useToastStore } from 'store/useToastStore'
 
 import { RegisterForm } from './components'
 import { RegisterFormData } from './components/RegisterForm'
@@ -12,7 +12,7 @@ import { RegisterFormData } from './components/RegisterForm'
 export default function Register() {
   const [error, setError] = useState('')
   const navigate = useNavigate()
-  const toast = useToaastStore()
+  const toast = useToastStore()
 
   async function registerUser(data: RegisterFormData) {
     axios

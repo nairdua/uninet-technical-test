@@ -8,8 +8,10 @@ import {
   Register,
   Logout,
   Posts,
+  CreatePost,
 } from './routes'
 import { ProtectedRoute, ToastManager } from 'components'
+import ModalManager from 'components/ModalManager/ModalManager'
 
 const router = createBrowserRouter([
   { path: '/login', Component: Login },
@@ -29,8 +31,14 @@ const router = createBrowserRouter([
         Component: Billing,
       },
       {
-        path: 'posts',
-        Component: Posts,
+        path: 'posts/*',
+        children: [
+          { index: true, Component: Posts },
+          {
+            path: 'create',
+            Component: CreatePost,
+          },
+        ],
       },
     ],
   },
@@ -39,8 +47,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
       <ToastManager />
+      <ModalManager />
+      <RouterProvider router={router} />
     </>
   )
 }

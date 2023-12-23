@@ -5,6 +5,16 @@ import NotFound from './NotFound'
 import Home from './Home'
 import Billing from './Billing'
 import Logout from './Logout'
-import Posts from './Posts'
+import { Posts, CreatePost } from './Posts'
 
-export { Root, Login, NotFound, Home, Billing, Register, Logout, Posts }
+export {
+  Root,
+  Login,
+  NotFound,
+  Home,
+  Billing,
+  Register,
+  Logout,
+  Posts,
+  CreatePost,
+}

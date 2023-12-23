@@ -14,14 +14,14 @@ import { useAuthStore } from 'store/useAuthStore'
 
 import { LoginForm } from './components'
 import { LoginFormData } from './components/LoginForm'
-import { useToaastStore } from 'store/useToastStore'
+import { useToastStore } from 'store/useToastStore'
 
 export default function Login() {
   const navigate = useNavigate()
 
   const [error, setError] = useState('')
   const store = useAuthStore()
-  const toast = useToaastStore()
+  const toast = useToastStore()
 
   async function loginUser(data: LoginFormData) {
     axios
