@@ -33,7 +33,9 @@ export default function Login() {
       })
       .catch(err => {
         toast.showToast('danger', 'An error occurred while logging in.')
-        setError(err.response.data.error)
+        if (err.response) {
+          setError(err.response.data.error)
+        }
       })
   }
 

@@ -25,7 +25,9 @@ export default function Register() {
       .catch(err => {
         // console.log(err)
         toast.showToast('danger', 'An error occurred while registering you')
-        setError(err.response.data.error)
+        if (err.response) {
+          setError(err.response.data.error)
+        }
       })
   }
 
