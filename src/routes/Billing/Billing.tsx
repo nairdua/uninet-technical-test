@@ -30,37 +30,39 @@ export default function Billing() {
             <Col className="fw-bold" sm={5}>
               Biller Name
             </Col>
-            <Col>{response.billername}</Col>
+            <Col data-testid="billername">{response.billername}</Col>
           </Row>
           <Row>
             <Col className="fw-bold" sm={5}>
               Inquiry ID
             </Col>
-            <Col>{response.inquiryid}</Col>
+            <Col data-testid="inquiryid">{response.inquiryid}</Col>
           </Row>
           <Row>
             <Col className="fw-bold" sm={5}>
               Payment Type
             </Col>
-            <Col>{response.paymenttype}</Col>
+            <Col data-testid="paymenttype">{response.paymenttype}</Col>
           </Row>
           <Row>
             <Col className="fw-bold" sm={5}>
               Response Code
             </Col>
-            <Col>{response.responsecode}</Col>
+            <Col data-testid="responsecode">{response.responsecode}</Col>
           </Row>
           <Row>
             <Col className="fw-bold" sm={5}>
               Subscriber ID
             </Col>
-            <Col>{response.subscriberid}</Col>
+            <Col data-testid="subscriberid">{response.subscriberid}</Col>
           </Row>
           <Row>
             <Col className="fw-bold" sm={5}>
               Subscriber Name
             </Col>
-            <Col>{response.subscribername || <i>none</i>}</Col>
+            <Col data-testid="subscribername">
+              {response.subscribername || <i>none</i>}
+            </Col>
           </Row>
         </Col>
         <Col md={8}>
@@ -86,7 +88,7 @@ export default function Billing() {
             </thead>
             <tbody>
               {dataSource.map((x, i) => (
-                <tr>
+                <tr key={x.billid}>
                   <td>{i + 1}</td>
                   <td>{x.billid}</td>
                   <td>{x.title}</td>
