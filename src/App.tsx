@@ -1,56 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import {
-  Login,
-  NotFound,
-  Home,
-  Billing,
-  Register,
-  Logout,
-  Posts,
-  CreatePost,
-} from './routes'
-import { ProtectedRoute, ToastManager } from 'components'
-import ModalManager from 'components/ModalManager/ModalManager'
-import { EditPost, PostDetail } from 'routes/Posts'
+import { ToastManager, ModalManager } from 'components'
+import routesConfig from 'routesConfig'
 
-const router = createBrowserRouter([
-  { path: '/login', Component: Login },
-  { path: '/register', Component: Register },
-  { path: '/logout', Component: Logout },
-  {
-    path: '/',
-    element: <ProtectedRoute />,
-    errorElement: <NotFound />,
-    children: [
-      {
-        path: '',
-        Component: Home,
-      },
-      {
-        path: 'billing',
-        Component: Billing,
-      },
-      {
-        path: 'posts/*',
-        children: [
-          { index: true, Component: Posts },
-          {
-            path: ':postId',
-            children: [
-              { path: '', Component: PostDetail },
-              { path: 'edit', Component: EditPost },
-            ],
-          },
-          {
-            path: 'create',
-            Component: CreatePost,
-          },
-        ],
-      },
-    ],
-  },
-])
+const router = createBrowserRouter(routesConfig)
 
 function App() {
   return (
