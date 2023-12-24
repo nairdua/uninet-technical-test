@@ -17,7 +17,7 @@ const routesConfig = [
   { path: '/logout', Component: Logout },
   {
     path: '/',
-    component: ProtectedRoute,
+    element: <ProtectedRoute />,
     errorElement: <NotFound />,
     children: [
       {
