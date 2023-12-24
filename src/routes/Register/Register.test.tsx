@@ -48,16 +48,19 @@ describe('<Register />', () => {
   test('Can register properly', async () => {
     render(<Register />, { wrapper: MemoryRouter })
 
-    const emailField = screen.getByLabelText('Email Address')
-    const pwField = screen.getByLabelText('Password')
-    const submitButton = screen.getByRole('button', { name: 'Register' })
+    const emailField = await screen.findByLabelText('Email Address')
+    const pwField = await screen.findByLabelText('Password')
+    const submitButton = await screen.findByRole('button', { name: 'Register' })
 
-    fireEvent.change(emailField, { target: { value: 'eve.holt@reqres.in' } })
-    fireEvent.change(pwField, { target: { value: 'cityslicka' } })
-    fireEvent.click(submitButton)
+    await fireEvent.change(emailField, {
+      target: { value: 'eve.holt@reqres.in' },
+    })
+    await fireEvent.change(pwField, { target: { value: 'cityslicka' } })
+    await fireEvent.click(submitButton)
 
-    await waitFor(() => {
-      console.log(screen.getByRole('heading'))
+    waitFor(() => {
+      const loginText = screen.findByText(/login/i)
+      expect(loginText).toBeInTheDocument()
     })
   })
 })
