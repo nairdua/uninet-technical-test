@@ -1,6 +1,6 @@
 # Technical Test
 
-This is also available on `https://resplendent-zuccutto-0119ef.netlify.app/`
+This is also available [here](https://resplendent-zuccutto-0119ef.netlify.app/)
 
 Technical test for Uninet FE developer position. It's a mock dashboard named Simpledash with the following features:
 
@@ -11,7 +11,7 @@ Technical test for Uninet FE developer position. It's a mock dashboard named Sim
 - PWA support
 - Responsive design
 
-Login using `eve.holt@regres.in / cityslicka`.
+Login using `eve.holt@reqres.in / cityslicka`.
 
 ## How to run
 
